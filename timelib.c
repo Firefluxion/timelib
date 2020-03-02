@@ -4,8 +4,10 @@ int day_of_the_year(struct date input_date)
     //Errechne den Tag des Jahres. Addiere die vorherigen Tage
     int amountOfDays = 0;
     struct date currentDate;
-    input_date.day = currentDate.day;
-    input_date.year = currentDate.year;
+    currentDate.day = input_date.day;
+    currentDate.year = input_date.year;
+//    input_date.day = currentDate.day;
+//    input_date.year = currentDate.year;
     currentDate.month = 0;
     int i = 0;
     for(i = 0; i < input_date.month - 1; i++)
