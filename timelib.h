@@ -59,7 +59,6 @@ int get_days_for_month(struct date inputDate);
 **/
 int exists_date(struct date inputDate);
 
-
 /**
   * Request date till the date is valid.
   * @return inputDate : returns the given date.

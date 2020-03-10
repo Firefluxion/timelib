@@ -27,7 +27,9 @@ int day_of_the_year(struct date inputDate)
         currentDate.month = i + 1;
         amountOfDays += get_days_for_month(currentDate);
     }
+
     amountOfDays += inputDate.day;
+
     return amountOfDays;
 }
 
@@ -45,6 +47,7 @@ int is_leapyear(int year)
     {
             return -1;
     }
+
     return ((year & 3) == 0 && ((year % 25) != 0 || (year & 15) == 0));
 }
 
@@ -65,6 +68,7 @@ int get_days_for_month(struct date inputDate)
     {
         days_in_months[1] = 28;
     }
+
     return days_in_months[inputDate.month -1];
 }
 
@@ -79,9 +83,21 @@ int get_days_for_month(struct date inputDate)
 **/
 int exists_date(struct date inputDate)
 {
-    if(is_year_valid(inputDate.year) == 0) { return 0;}
-    if(inputDate.month < 1 || inputDate.month > 12) {return 0;}
-    if(inputDate.day < 1 || inputDate.day > get_days_for_month(inputDate)) {return 0;}
+    if(is_year_valid(inputDate.year) == 0)
+    {
+        return 0;
+    }
+
+    if(inputDate.month < 1 || inputDate.month > 12)
+    {
+        return 0;
+    }
+
+    if(inputDate.day < 1 || inputDate.day > get_days_for_month(inputDate))
+    {
+        return 0;
+    }
+
     return 1;
 }
 
@@ -92,12 +108,15 @@ int exists_date(struct date inputDate)
 struct date input_date()
 {
     struct date inputDate;
+
     do
     {
         printf("Please enter a year:\n");
         scanf("%d", &inputDate.year);
+
         printf("Please enter a month:\n");
         scanf("%d", &inputDate.month);
+
         printf("Please enter a day\n");
         scanf("%d", &inputDate.day);
     }
