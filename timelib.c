@@ -22,8 +22,7 @@ int day_of_the_year(struct date inputDate)
     currentDate.year = inputDate.year;
     currentDate.month = 0;
 
-    int i = 0;
-    for(i = 0; i < inputDate.month - 1; i++)
+    for(int i = 0; i < inputDate.month - 1; i++)
     {
         currentDate.month = i + 1;
         amountOfDays += get_days_for_month(currentDate);
@@ -33,29 +32,8 @@ int day_of_the_year(struct date inputDate)
 }
 
 /**
-  * Request date till the date is valid.
-  * @return inputDate : returns the given date.
-**/
-struct date input_date()
-{
-    struct date inputDate;
-    do
-    {
-        printf("Please enter a year:\n");
-        scanf("%d", &inputDate.year);
-        printf("Please enter a month:\n");
-        scanf("%d", &inputDate.month);
-        printf("Please enter a day\n");
-        scanf("%d", &inputDate.day);
-    }
-    while(exists_date(inputDate) == 0);
-
-    return inputDate;
-}
-
-/**
  * Checks whether a given year is a leap year.
- * see more: https://stackoverflow.com/a/11595914
+ * Additional info at https://stackoverflow.com/a/11595914
  * @param year
  * @return -1 if the given year is not valid.
  * @return 0 if the given year is not a leap year.
@@ -63,7 +41,7 @@ struct date input_date()
  **/
 int is_leapyear(int year)
 {
-    if(!_is_year_valid(year))
+    if(!is_year_valid(year))
     {
             return -1;
     }
@@ -101,10 +79,31 @@ int get_days_for_month(struct date inputDate)
 **/
 int exists_date(struct date inputDate)
 {
-    if(_is_year_valid(inputDate.year) == 0) { return 0;}
+    if(is_year_valid(inputDate.year) == 0) { return 0;}
     if(inputDate.month < 1 || inputDate.month > 12) {return 0;}
     if(inputDate.day < 1 || inputDate.day > get_days_for_month(inputDate)) {return 0;}
     return 1;
+}
+
+/**
+  * Request date till the date is valid.
+  * @return inputDate : returns the given date.
+**/
+struct date input_date()
+{
+    struct date inputDate;
+    do
+    {
+        printf("Please enter a year:\n");
+        scanf("%d", &inputDate.year);
+        printf("Please enter a month:\n");
+        scanf("%d", &inputDate.month);
+        printf("Please enter a day\n");
+        scanf("%d", &inputDate.day);
+    }
+    while(exists_date(inputDate) == 0);
+
+    return inputDate;
 }
 
 /**
@@ -113,7 +112,7 @@ int exists_date(struct date inputDate)
   * @return 1 if the year is valid.
   * @return 0 if the year is not valid.
 **/
-int _is_year_valid(int year)
+int is_year_valid(int year)
 {
     return (year > 1582 && year < 2401);
 }

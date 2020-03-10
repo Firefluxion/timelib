@@ -12,14 +12,12 @@
 
 int main()
 {
-    // date is structured as year, month and day
     struct date inputDate;
 
     inputDate = input_date();
-
     int amountOfDays = day_of_the_year(inputDate);
 
-    // Output
     printf("Day of year: %d", amountOfDays);
+
     return 0;
 }
